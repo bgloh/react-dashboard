@@ -1,6 +1,7 @@
 import produce, {current} from 'immer';
 import axios from 'axios';
 import {gridColumnVisibilityModelSelector} from "@mui/x-data-grid";
+import httpEndPoint from "../../httpEndPoint";
 
 export const GET_USER_LIST_START = 'GET_USER_LIST_START'; // getUserList 함수 비동기 처리 시작시의 상태
 export const GET_USER_LIST_SUCCESS = 'GET_USER_LIST_SUCCESS'; // getUserList 함수 비동기 처리 성공시의 상태
@@ -40,7 +41,7 @@ export const SET_BACK_GROUND_COLOR = 'SET_BACK_GROUND_COLOR';// 배경 색 변�
 export const getHomeUser =()=> {
     return (dispatch, getState) =>{
         dispatch({type: GET_HOME_USER_START})
-        let url = 'https://******';
+        let url = httpEndPoint.getHomeUser;
         axios.get(url, {// get 메소드를 통해 전체 유저 데이터를 받아냄
         }).then(
             function (response)
@@ -57,7 +58,7 @@ export const getHomeUser =()=> {
 export const getUserList =()=> {
     return (dispatch, getState) =>{
         dispatch({type: GET_USER_LIST_START})
-        let url = 'https://*****';
+        let url = httpEndPoint.getUserList;
         axios.get(url, {// get 메소드를 통해 전체 유저 데이터를 받아냄
         }).then(
             function (response)
@@ -76,8 +77,8 @@ export function getUser(payload) {
 
         dispatch({type: GET_USER_START})
         const name = payload; //선택한 유저의 이름
-        let url = 'https://*******';
-        axios.get(url+"?playerName="+name, {// 비동기 방식을 통해 유저이름을 바탕으로 해당 유저의 DB 검색
+        let url = httpEndPoint.getUser;
+        axios.get(url+httpEndPoint.getUserPlayer+name, {// 비동기 방식을 통해 유저이름을 바탕으로 해당 유저의 DB 검색
         }).then(
             function (response)
             {
@@ -96,7 +97,7 @@ export function postUser(payload){
 
         dispatch({type: POST_USER_START})
         var value = JSON.parse(payload);//Json 문자열을 Json Object로 변경
-        let url = 'https://******';
+        let url = httpEndPoint.postUser;
         axios.post(url,value).then//post 메소드로 보냄
         (function (reponse)
         {
