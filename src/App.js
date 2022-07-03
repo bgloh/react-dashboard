@@ -10,6 +10,8 @@ import { Visibility, Segment, Container, Button,Divider,Header ,Grid} from 'sema
 // Amplify
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
+import Auth from "@aws-amplify/auth";
+
 import { AmplifyAuthenticator, AmplifySignIn, withAuthenticator} from '@aws-amplify/ui-react';
 
 //Router
@@ -17,6 +19,7 @@ import Controller from './pages/Controller';
 
 // amplify cognito
 Amplify.configure(awsconfig);
+Auth.configure(awsconfig);
 
 const App = () => (
 
@@ -34,7 +37,7 @@ const App = () => (
 );
 
 
-//export default withAuthenticator(App);
+// export default withAuthenticator(App);
 export default App;
 
 
