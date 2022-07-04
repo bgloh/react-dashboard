@@ -10,12 +10,12 @@ import {
     inputVerificationCode,
     signIn,
     signUp
-} from "../../pages/controllerDucks";
+} from "./authRouterDucks";
 
 
 //Router
 export function Signup(){
-    const signupState = useSelector((state) => state.controller.signupState)
+    const signupState = useSelector((state) => state.auth.signupState)
     if(signupState)
         return <VerificationCode/>
     else
@@ -68,8 +68,8 @@ function Block() {
 
 function VerificationCode(){
     const dispatch = useDispatch();
-    const email = useSelector((state) => state.controller.loginUserID)
-    const password = useSelector((state) => state.controller.loginUserPassword)
+    const email = useSelector((state) => state.auth.loginUserID)
+    const password = useSelector((state) => state.auth.loginUserPassword)
     return(
         <div style={{textAlign : 'center' }}>
             <br/>

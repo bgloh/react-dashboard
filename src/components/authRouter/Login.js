@@ -1,7 +1,7 @@
 import {useDispatch} from "react-redux";
 import {Button, Divider, Dropdown, Grid, Input, Segment} from "semantic-ui-react";
 import React from "react";
-import {goFindPW, goSignUp, inputID, inputPassword, signIn} from "../../pages/controllerDucks";
+import {goFindPW, goSignUp, inputID, inputPassword, signIn} from "./authRouterDucks";
 
 
 //Router
