@@ -29,79 +29,96 @@ import {FindPassWord} from "../components/login/FindPassWord"; // aws amplify cr
 
 Amplify.configure({Auth: awsmobile});
 
-function Controller(){
+function ControlRouter(){
     const loginState = useSelector((state) => state.controller.loginState)
-    const loginID = useSelector((state) => state.controller.loginUserID)
-    const curState = useSelector((state) => state.controller.curState)
-    const dispatch = useDispatch();
-    if (loginState === true)
-    return(
-            <div>
-                    <div style={{textAlign : 'right'}}>
-                        {loginID}님 환영합니다.
-                        <Button onClick={() => dispatch(signOut())}>logout</Button>
-                        <Divider/>
-
-                    </div>
-                    <Router>
-                        <Navigator/>
-                        <Routes>                       
-                            <Route path="/topics" element={<Topics />} >
-                               <Route path="subTopic1" element={<SubTopic1/>} />
-                               <Route path="subTopic2" element={<SubTopic2/>} />
-                            </Route>
-                            <Route path="/contact" element={<Contact />} />
-                            <Route path="/address" element={<Http/>} >
-                                <Route path="home" element={<Home/>} />
-                                <Route path="dashboard" element={<DashBoard/>} />
-                                <Route path="option" element={<Option/>} />
-                            </Route>
-                        </Routes>
-                    </Router>
-                    
-            </div>
-    )
-    else
-    {
-        if(curState === 'login')
-            return(
-            <div>
-                <Router>
-                    <Routes>
-                        <Route path="/" element={<Login/>}/>
-                        <Route path="/*" element={<Navigate to="/" />}/>
-                    </Routes>
-                </Router>
-            </div>
-            )
-        else if(curState === 'signup')
-            return(
-                <div>
-                    <Router>
-                        <Routes>
-                            <Route path="/" element={<Signup/>}/>
-                            <Route path="/*" element={<Navigate to="/" />}/>
-                        </Routes>
-                    </Router>
-                </div>
-            )
-
-        else if(curState === 'find')
-            return(
-                <div>
-                    <Router>
-                        <Routes>
-                            <Route path="/" element={<FindPassWord/>}/>
-                            <Route path="/*" element={<Navigate to="/" />}/>
-                        </Routes>
-                    </Router>
-                </div>
-            )
-    }
+   
+    return (loginState === true)? <MainRouter /> : <AuthRouter />
 
 }
 
-export default Controller;
+export default ControlRouter;
+
+
+function MainRouter(){
+    const loginID = useSelector((state) => state.controller.loginUserID);
+    const dispatch = useDispatch();
+    return(
+        <div>
+        <div style={{textAlign : 'right'}}>
+            {loginID}님 환영합니다.
+            <Button onClick={() => dispatch(signOut())}>logout</Button>
+            <Divider/>
+
+        </div>
+        <Router>
+            <Navigator/>
+            <Routes>                       
+                <Route path="/topics" element={<Topics />} >
+                   <Route path="subTopic1" element={<SubTopic1/>} />
+                   <Route path="subTopic2" element={<SubTopic2/>} />
+                </Route>
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/address" element={<Http/>} >
+                    <Route path="home" element={<Home/>} />
+                    <Route path="dashboard" element={<DashBoard/>} />
+                    <Route path="option" element={<Option/>} />
+                </Route>
+            </Routes>
+        </Router>
+        
+</div>
+    )
+}
+
+function AuthRouter(){
+    const curState = useSelector((state) => state.controller.curState);
+    if (curState === 'login')  
+        return (<LoginRouter />)
+    else if (curState === 'signup') 
+          return (<SignupRouter />)
+    else if (curState === 'find') 
+            return( <FindPasswordRouter />)
+} 
+
+function LoginRouter() {
+    return (
+        <div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<Login/>}/>
+                <Route path="/*" element={<Navigate to="/" />}/>
+            </Routes>
+        </Router>
+        </div>    
+    )                           
+}
+
+function SignupRouter() {
+    return(
+        <div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<Signup/>}/>
+                <Route path="/*" element={<Navigate to="/" />}/>
+            </Routes>
+        </Router>
+    </div>
+    )
+}
+
+function FindPasswordRouter() {
+    return (
+        <div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<FindPassWord/>}/>
+                <Route path="/*" element={<Navigate to="/" />}/>
+            </Routes>
+        </Router>
+    </div>
+    )
+}
+
 
 function Navigator(){
     return(

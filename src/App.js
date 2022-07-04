@@ -15,7 +15,7 @@ import Auth from "@aws-amplify/auth";
 import { AmplifyAuthenticator, AmplifySignIn, withAuthenticator} from '@aws-amplify/ui-react';
 
 //Router
-import Controller from './pages/Controller';
+import ControlRouter from './pages/Controller';
 
 // amplify cognito
 Amplify.configure(awsconfig);
@@ -30,7 +30,7 @@ const App = () => (
                    {/* <Quote />   */}
                    {/* <User/>  */}
        
-                <Controller/>
+                <ControlRouter/>
          </Provider>
 </div>
 
