@@ -28,7 +28,7 @@ Amplify.configure({Auth: awsmobile});
 function ControlRouter(){
     const loginState = useSelector((state) => state.auth.loginState)
    
-    return (loginState === true)? <MainRouter /> : <AuthRouter />
+    return (loginState === true)? <MainRouter /> : <AuthRouter/>
 
 }
 
@@ -37,12 +37,13 @@ export default ControlRouter;
 
 function MainRouter(){
     const loginID = useSelector((state) => state.auth.loginUserID);
+    const isLoading = useSelector((state) => state.auth.loadingState);
     const dispatch = useDispatch();
     return(
         <div>
         <div style={{textAlign : 'right'}}>
             {loginID}님 환영합니다.
-            <Button onClick={() => dispatch(signOut())}>logout</Button>
+            <Button onClick={() => dispatch(signOut())} loading={isLoading}>logout</Button>
             <Divider/>
 
         </div>
