@@ -10,12 +10,12 @@ import {
         inputPassword,
         inputVerificationCode, sendNewPassword,
         signUp,
-} from "../../pages/controllerDucks";
+} from "./authRouterDucks";
 
 
 //Router
 export function FindPassWord(){
-        const passwordChangeState = useSelector((state) => state.controller.passwordChangeState)
+        const passwordChangeState = useSelector((state) => state.auth.passwordChangeState)
         if(passwordChangeState)
                 return(
                    <NewPassword/>
@@ -69,7 +69,7 @@ function Check_email(){
 
 function NewPassword(){
         const dispatch = useDispatch();
-        const email = useSelector((state) => state.controller.loginUserID)
+        const email = useSelector((state) => state.auth.loginUserID)
         return(
             <div style={{textAlign : 'center' }}>
                     <br/>
