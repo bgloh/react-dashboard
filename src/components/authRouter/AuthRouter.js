@@ -17,7 +17,7 @@ export function AuthRouter() {
 
 function LoginRouter() {
     return (
-        <div>
+        <div style={{ backgroundColor : "lightgray"}}>
             <Router>
                 <Routes>
                     <Route path="/" element={<Login/>}/>
@@ -30,7 +30,7 @@ function LoginRouter() {
 
 function SignupRouter() {
     return (
-        <div>
+        <div style={{ backgroundColor : "lightgray"}}>
             <Router>
                 <Routes>
                     <Route path="/" element={<Signup/>}/>
@@ -43,7 +43,7 @@ function SignupRouter() {
 
 function FindPasswordRouter() {
     return (
-        <div>
+        <div style={{ backgroundColor : "lightgray"}}>
             <Router>
                 <Routes>
                     <Route path="/" element={<FindPassWord/>}/>
